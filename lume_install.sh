@@ -2,7 +2,7 @@
 ###
  # @Author: yepeng.anthony
  # @Date: 2026-03-03 15:55:15
- # @LastEditTime: 2026-03-03 16:32:34
+ # @LastEditTime: 2026-03-03 17:44:44
  # @Description: file content
 ###
 
@@ -41,7 +41,8 @@ VM_NAME=${VM_NAME:-openclaw-dev}
 read -p "登录用户名 [默认: admin]: " USER_NAME
 USER_NAME=${USER_NAME:-admin}
 
-read -s -p "设置虚拟机登录密码: " USER_PWD
+read -s -p "设置虚拟机登录密码:[默认: admin] " USER_PWD
+USER_PWD=${USER_PWD:-admin}
 echo -e "\n"
 
 # 4. 生成临时的自动化配置文件
