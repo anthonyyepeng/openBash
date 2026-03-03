@@ -35,13 +35,13 @@ fi
 
 # 3. 交互式获取参数
 echo -e "\n${BLUE}📝 请输入虚拟机配置信息:${NC}"
-read -p "虚拟机名称 [默认: openclaw-dev]: " VM_NAME
+read -p "虚拟机名称 [默认: openclaw-dev]: " VM_NAME < /dev/tty
 VM_NAME=${VM_NAME:-openclaw-dev}
 
-read -p "登录用户名 [默认: admin]: " USER_NAME
+read -p "登录用户名 [默认: admin]: " USER_NAME < /dev/tty
 USER_NAME=${USER_NAME:-admin}
 
-read -s -p "设置虚拟机登录密码:[默认: admin] " USER_PWD
+read -s -p "设置虚拟机登录密码:[默认: admin] " USER_PWD < /dev/tty
 USER_PWD=${USER_PWD:-admin}
 
 # 4. 生成临时的自动化配置文件
