@@ -2,7 +2,7 @@
 ###
  # @Author: yepeng.anthony
  # @Date: 2026-03-03 15:55:15
- # @LastEditTime: 2026-03-03 16:32:34
+ # @LastEditTime: 2026-03-03 16:53:36
  # @Description: file content
 ###
 
@@ -42,7 +42,6 @@ read -p "登录用户名 [默认: admin]: " USER_NAME
 USER_NAME=${USER_NAME:-admin}
 
 read -s -p "设置虚拟机登录密码: " USER_PWD
-echo -e "\n"
 
 # 4. 生成临时的自动化配置文件
 # 包含：Brew, NVM(Node LTS), PNPM, Python 3.11, OpenClaw 别名
