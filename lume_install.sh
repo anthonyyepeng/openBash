@@ -1,4 +1,10 @@
 #!/bin/bash
+###
+ # @Author: yepeng.anthony
+ # @Date: 2026-03-03 15:55:15
+ # @LastEditTime: 2026-03-03 16:32:34
+ # @Description: file content
+###
 
 # 遇到错误立即停止
 set -e
@@ -46,6 +52,8 @@ cat <<EOF > .lume_temp_config.json
   "username": "$USER_NAME",
   "password": "$USER_PWD",
   "install_rosetta": true,
+  "boot_wait": 10,
+  "boot_commands": [],
   "commands": [
     "NONINTERACTIVE=1 /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
     "eval \"\$(/opt/homebrew/bin/brew shellenv)\"",
@@ -53,8 +61,8 @@ cat <<EOF > .lume_temp_config.json
     "mkdir -p /Users/$USER_NAME/.nvm",
     "brew install nvm pnpm yarn git python@3.11",
     "echo 'export NVM_DIR=\"\$HOME/.nvm\"' >> /Users/$USER_NAME/.zshrc",
-    "echo '[ -s \"/opt/homebrew/opt/nvm/nvm.sh\" ] && \\. \"/opt/homebrew/opt/nvm/nvm.sh\"' >> /Users/$USER_NAME/.zshrc",
-    "echo '[ -s \"/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm\" ] && \\. \"/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm\"' >> /Users/$USER_NAME/.zshrc",
+    "echo '[ -s \"/opt/homebrew/opt/nvm/nvm.sh\" ] && . \"/opt/homebrew/opt/nvm/nvm.sh\"' >> /Users/$USER_NAME/.zshrc",
+    "echo '[ -s \"/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm\" ] && . \"/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm\"' >> /Users/$USER_NAME/.zshrc",
     "echo 'alias python=/opt/homebrew/bin/python3.11' >> /Users/$USER_NAME/.zprofile",
     "echo 'alias pip=/opt/homebrew/bin/pip3.11' >> /Users/$USER_NAME/.zprofile",
     "export NVM_DIR=\"/Users/$USER_NAME/.nvm\" && [ -s \"/opt/homebrew/opt/nvm/nvm.sh\" ] && . \"/opt/homebrew/opt/nvm/nvm.sh\" && nvm install --lts && nvm use --lts && nvm alias default 'lts/*'"
@@ -64,11 +72,11 @@ EOF
 
 # 5. 执行初始化
 echo -e "${BLUE}🛠 正在初始化虚拟机 (下载依赖可能耗时较长)...${NC}"
-lume create "$VM_NAME" --os macos --ipsw latest --disk-size 80GB --unattended .lume_temp_config.json
+lume create "$VM_NAME" --os macos --ipsw latest --disk-size 80GB --memory 16GB --unattended .lume_temp_config.json
 
 # 6. 清理现场
 rm .lume_temp_config.json
 
-echo -e "\n${GREEN}✨ 全部安装完成！${NC}"
-echo -e "👉 启动虚拟机并挂载代码目录:"
-echo -e "${BLUE}lume run $VM_NAME --shared-dir /Users/$(whoami)/YourCodePath${NC}\n"
+# echo -e "\n${GREEN}✨ 全部安装完成！${NC}"
+# echo -e "👉 启动虚拟机并挂载代码目录:"
+# echo -e "${BLUE}lume run $VM_NAME --shared-dir /Users/$(whoami)/YourCodePath${NC}\n"
